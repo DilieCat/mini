@@ -5,6 +5,7 @@ class Calender extends Controller
 	{
 		$birthdays = $this->model->getAllBirthdays();
 		$currentMonth = null;
+		$currendtMonth = null;
 
 		require APP . 'view/_templates/header.php';
 		require APP . 'view/calender/index.php';
