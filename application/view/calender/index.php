@@ -16,4 +16,4 @@
 <?php
 endforeach;
 ?>
-<p><a href="add.php">Toevoegen</a></p>
+<p><a href="<?php echo URL; ?>calender/addBirthday">Toevoegen</a></p>
