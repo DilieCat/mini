@@ -144,11 +144,24 @@ class Model
         return $query->fetchAll(); 
     }
 
+    public function getBirthday($id)
+    {
+        $sql = "SELECT * FROM birthdays WHERE id=:id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':id' => $id);
+        $query->execute($parameters);
+
+        return $query->fetch(); 
+    }
+
     public function getAllMonths()
     {
         $sql = "SELECT * FROM `month`";
         $query = $this->db->prepare($sql);
         $query->execute();
+
+        $currentMonth = null;
+        $currendtMonth = null;
 
         return $query->fetchAll();
     }
@@ -168,6 +181,7 @@ class Model
 
    
     }
+
     public function addBirthdayAction($person, $year, $day, $month_id)
     {
         $sql = "INSERT INTO birthdays (person, year, day, month_id) VALUES (:person, :year, :day, :month_id)";
@@ -188,13 +202,39 @@ class Model
             return false;
         }
 
-        //query uitvoeren
+        $sql = "SELECT * FROM `birthdays` WHERE id = :birthday_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':birthday_id' => $birthday_id);
 
-        if ($num_rows != 0) {
-            return false;
-        }
+        // useful for debugging: you can see the SQL behind above construction by using:
+        // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
 
-        return true;
+        $query->execute($parameters);
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch();
+    
+    }
+
+    public function deleteBirthdayAction($id)
+    {
+        $sql = "DELETE FROM birthdays WHERE id = :id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':id' => $id);
+
+        $query->execute($parameters);
+    }
+
+    public function editBirthday($name, $day, $year, $month_id, $id)
+    {
+        $sql = "UPDATE birthdays SET name = :name, day = :day, year = :year, month_id = :month_id WHERE id = :id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':name' => $name, ':day' => $day, ':year' => $year, ':month_id' => $month_id, ':id' => $id);
+
+        // useful for debugging: you can see the SQL behind above construction by using:
+        // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
+
+        $query->execute($parameters); 
     }
 
 }

@@ -9,7 +9,7 @@
 
 ?>
 
-<h2><?=$birthday->day; ?></h2><p><a href="edit.php?id=<?=$birthday->id; ?>"><?=$birthday->person; ?> (<?=$birthday->year; ?>)</a><a href="delete.php?id=<?=$birthday->id; ?>"> X </a></p><br>
+<h2><?=$birthday->day; ?></h2><p><a href="<?php echo URL . 'calender/editbirthday/' . htmlspecialchars($birthday->id, ENT_QUOTES, 'UTF-8'); ?>"><?=$birthday->person; ?> (<?=$birthday->year; ?>)</a><a href="<?php echo URL . 'calender/deletebirthday/' . htmlspecialchars($birthday->id, ENT_QUOTES, 'UTF-8'); ?>"> X </a></p><br>
 
 
 

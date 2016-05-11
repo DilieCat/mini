@@ -1,10 +1,10 @@
 	<h1>Verwijder verjaardag</h1>
 	<p>Are you sure you want to delete:</p>
-	<form method="post">
+	<form method="post" action="<?php echo URL . 'calender/deleteBirthdayAction/' . htmlspecialchars($birthday->id, ENT_QUOTES, 'UTF-8'); ?>">
 		<div>
-			<input type="hidden" name="id" value="<?=$birthdays->id?>">
+			<input type="hidden" name="id" value="<?=$birthday->id; ?>">
 			<label for="name">Naam:</label>
-			<span><?=$birthdays->person?></span>
+			<span><?=$birthday->person; ?></span>
 		</div>
 
 		<div>
