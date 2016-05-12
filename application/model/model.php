@@ -225,11 +225,11 @@ class Model
         $query->execute($parameters);
     }
 
-    public function editBirthday($name, $day, $year, $month_id, $id)
+    public function editBirthdayAction($person, $day, $year, $month_id, $id)
     {
-        $sql = "UPDATE birthdays SET name = :name, day = :day, year = :year, month_id = :month_id WHERE id = :id";
+        $sql = "UPDATE birthdays SET person = :person, day = :day, year = :year, month_id = :month_id WHERE id = :id";
         $query = $this->db->prepare($sql);
-        $parameters = array(':name' => $name, ':day' => $day, ':year' => $year, ':month_id' => $month_id, ':id' => $id);
+        $parameters = array(':person' => $person, ':day' => $day, ':year' => $year, ':month_id' => $month_id, ':id' => $id);
 
         // useful for debugging: you can see the SQL behind above construction by using:
         // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();

@@ -66,4 +66,17 @@ class Calender extends Controller
 		require APP . 'view/_templates/footer.php';
 	}
 
+	public function editBirthdayAction()
+	{
+
+	        // if we have POST data to create a new song entry
+        if (isset($_POST["Save"])) {
+            // do updateSong() from model/model.php
+            $this->model->editBirthdayAction($_POST["person"], $_POST["day"],  $_POST["year"], $_POST['month_id'], $_POST['id']);
+        }
+
+        // where to go after song has been added
+        header('location: ' . URL . 'calender/index');
+	}
+
 }
